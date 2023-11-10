@@ -4,7 +4,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Pressable,
@@ -13,9 +13,20 @@ import {
   ScrollView
 } from 'react-native';
 
-function ToDoList() 
+function ToDoList({ tasks }) 
 {
 	return (
+	<ScrollView>
+		{tasks.map((task, index) => (
+		<Pressable key={index}>
+			<View style={[styles.task, styles.completed]}>
+			<Text style={styles.taskText}>{task}</Text>
+			</View>
+		</Pressable>
+		))}
+	</ScrollView>
+	)
+	/*return (
 	<ScrollView>
 	<Pressable>
 		<View style={[styles.task, styles.completed]}>
@@ -33,7 +44,7 @@ function ToDoList()
 		</View>
 	</Pressable>
 	</ScrollView>
-	);
+	);*/
 }
 
 const styles = StyleSheet.create({
