@@ -12,23 +12,35 @@ import {
   ScrollView
 } from 'react-native';
 
-import ToDoList from './ToDoList';
-import ToDoForm from './ToDoForm';
+import HomeScreen from './HomeScreen';
+import AboutScreen from './AboutScreen';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 function App() {
-	const [tasks, setTasks] = useState(['Dont do laundry', 'Avoid the gym', 'Ignore the dog']);
+	
+	  const Stack = createStackNavigator();
 
-	const addTask = (task) => {
-		setTasks([...tasks, task]);
-	  };
-
+  /*return (
+		<NavigationContainer>
+			<SafeAreaView>
+				<ScrollView>
+						<ToDoList tasks={tasks} />
+						<ToDoForm addTask={addTask} />
+				</ScrollView>
+			</SafeAreaView>
+		</NavigationContainer>
+  );*/
   return (
-		<SafeAreaView>
-			<ScrollView>
-					<ToDoList tasks={tasks} />
-					<ToDoForm addTask={addTask} />
-			</ScrollView>
-		</SafeAreaView>
+    <NavigationContainer>
+      {/* Add the following: */}
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+      </Stack.Navigator>
+      {/**********************/}
+    </NavigationContainer>
   );
 }
 
