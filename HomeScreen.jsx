@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,14 +9,26 @@ import {
 
 import ToDoList from './ToDoList';
 import ToDoForm from './ToDoForm';
+import toDoItems from './data/tasks.json';
 
 function HomeScreen({ navigation })
 {
-	const [tasks, setTasks] = useState(['Dont do laundry', 'Avoid the gym', 'Ignore the dog']);
-
+	const [tasks, setTasks] = useState([]);
 	const addTask = (task) => {
 		setTasks([...tasks, task]);
 	  };
+
+	//useEffect hook to load tasks from json file
+	useEffect(() => {
+		setTasks(toDoItems.tasks);
+	}, []);
+	/*if (tasks.length == 0)
+	{
+		for (let i = 0; i < toDoItems.tasks.length; i++) {
+			console.log(i + ". Added task " + toDoItems.tasks[i] + " to list")
+			addTask(toDoItems.tasks[i]);
+		}
+	}*/
 
 	return (
 	<SafeAreaView>
